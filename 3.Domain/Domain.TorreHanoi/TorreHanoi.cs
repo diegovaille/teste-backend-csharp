@@ -55,16 +55,15 @@ namespace Domain.TorreHanoi
             }
         }
 
-        private void Resolver(int numeroDiscosRestante, Pino origem, Pino intermediario, Pino destino)
+        private void Resolver(int numeroDiscosRestante, Pino origem, Pino destino, Pino intermediario)
         {
-            if (numeroDiscosRestante <= 1)
+            if (numeroDiscosRestante > 0)
             {
-                return;
+                Resolver(numeroDiscosRestante - 1, origem, intermediario, destino);
+                MoverDisco(origem, destino);
+                Resolver(numeroDiscosRestante - 1, intermediario, destino, origem);
             }
 
-            Resolver(numeroDiscosRestante - 1, origem, destino, intermediario);
-            MoverDisco(origem, destino);
-            Resolver(numeroDiscosRestante - 1, intermediario, origem, destino);
         }
 
         private void MoverDisco(Pino pinoInicio, Pino pinoFim)
